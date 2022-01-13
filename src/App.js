@@ -4,7 +4,6 @@ import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Product from "./components/Product/Product";
 import { useEffect } from "react";
-
 import {
   BrowserRouter as Router,
   Routes,
@@ -15,6 +14,7 @@ import Cart from "./components/Cart/Cart";
 import Login from "./components/Login/Login";
 import { auth } from "./firebase";
 import { useStateValue } from "./components/StateProvider";
+import { AnimatePresence } from "framer-motion";
 function App() {
   const [{ }, dispatch] = useStateValue();
   useEffect(() => {
@@ -39,6 +39,7 @@ function App() {
     
   }, [])
   return (
+    <AnimatePresence>
     <Router>
       {/* code to hide header at login page */}
 
@@ -50,7 +51,8 @@ function App() {
           <Route exact path="/login" element={<Login />} />
         </Routes>
       </div>
-    </Router>
+      </Router>
+      </AnimatePresence>
   );
 }
 

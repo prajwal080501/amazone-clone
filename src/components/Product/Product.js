@@ -1,5 +1,7 @@
 import React, {useStateValue} from "../../components/StateProvider";
 import "./Product.css";
+import { motion } from "framer-motion";
+
 const Product = ({ id, title, image, price, rating }) => {
   const [{ basket }, dispatch] = useStateValue();
   const addToBasket = () => {
@@ -17,8 +19,16 @@ const Product = ({ id, title, image, price, rating }) => {
 };
   return (
     <>
-      <div className="product">
-        <div className="product__info">
+      <div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="product">
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+          className="product__info">
           <p className="product__name">
             <b>{title}</b>
           </p>
@@ -41,7 +51,7 @@ const Product = ({ id, title, image, price, rating }) => {
             className="product__image"
           />
           <button onClick= {addToBasket} className="product__button">Add to cart</button>
-        </div>
+        </motion.div>
       </div>
     </>
   );
